@@ -16,13 +16,14 @@
 
 package uk.gov.hmrc.test.ui.utils
 
+import commonstepdefs.CommonFunctions
 import org.mongodb.scala.MongoClient
 
 import scala.concurrent.Await
-import scala.concurrent.duration._
+import scala.concurrent.duration.*
 import scala.language.postfixOps
 
-object MongoConnection {
+object MongoConnection extends CommonFunctions{
 
 
   def dropCollection(dbName: String, collectionName: String): Unit = {
