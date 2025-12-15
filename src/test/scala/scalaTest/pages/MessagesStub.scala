@@ -17,6 +17,7 @@
 package scalaTest.pages
 
 import play.api.libs.json.JsValue
+import scalaj.http.Http
 
 case class MessageCount(
   count: Int
