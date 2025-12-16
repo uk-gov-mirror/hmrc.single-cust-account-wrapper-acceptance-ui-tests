@@ -86,11 +86,6 @@ class ActivitiesPageSteps extends BaseStepDef {
     }
   }
 
-  And("""^the user sees text '(.*)' on the page$"""){(value: String) =>
-    SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + value + "')]"), value)
-  }
-
-
   And("""^the user should sees text (.*) on the page$""") { (value: String) =>
     SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + value + "')]"), value)
   }
