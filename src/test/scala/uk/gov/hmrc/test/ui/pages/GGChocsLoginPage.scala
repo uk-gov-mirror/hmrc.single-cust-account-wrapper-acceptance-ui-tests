@@ -58,8 +58,9 @@ object GGChocsLoginPage extends BasePage with GGloginPagePaths with SCAStartPage
       sendKeys(By.id(identifierValueForPTA), NINumber)
   }
 
-  def clickSubmitButton(): Unit =
-    driver.findElement(By.id(submitButton)).click()
+  def clickSubmitButton(): Unit = {
+    click(By.id(submitButton))
+  }
 
   val NINumber                    = "ER872414B"
   val dropdown                    = "presets-dropdown"

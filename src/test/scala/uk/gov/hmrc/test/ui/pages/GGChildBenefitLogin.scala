@@ -38,41 +38,34 @@ object GGChildBenefitLogin extends BasePage with GGloginPagePaths with SCAStartP
   def deleteCookies(): Unit =
     driver.manage().deleteAllCookies()
 
-  def setConfidenceLevel(): Unit =
-    driver.findElement(By.id("confidenceLevel")).sendKeys("200")
+  def setConfidenceLevel(): Unit = {
+    sendKeys(By.id("confidenceLevel"), "200")
+  }
 
-  def setOrganisationAffinityGroup(): Unit =
-    driver.findElement(By.id("affinityGroupSelect")).sendKeys("Organisation")
+  def setOrganisationAffinityGroup(): Unit = {
+    sendKeys(By.id("affinityGroupSelect"), "Organisation")
+  }
 
   def enterNINO(nino: String): Unit =
     nino match {
       case "invalidService" =>
-      case _                => driver.findElement(By.id("nino")).sendKeys(nino)
+      case _                => sendKeys(By.id("nino"), nino)
     }
 
   def clickSubmitButton(): Unit =
-    driver.findElement(By.id("submit")).click()
+    click(By.id("submit"))
 
   def selectSAEnrolment(): Unit = {
-    val EnrolmentSelect: Select = new Select(driver.findElement(By.id(dropdown)))
+    val EnrolmentSelect: Select = new Select(findBy(By.id(dropdown)))
     EnrolmentSelect.selectByVisibleText(SelfAssessment)
-    driver.findElement(By.id(addPresent)).click()
-    driver
-      .findElement(By.id(identifierValueForUTRNumber))
-      .sendKeys(UTRNumber)
+    click(By.id(addPresent))
+    sendKeys(By.id(identifierValueForUTRNumber), UTRNumber)
   }
 
   def selectPTAEnrolment(): Unit = {
-    driver
-      .findElement(By.id("enrolment[0].name"))
-      .sendKeys(EnrolmentKey)
-    driver
-      .findElement(By.id("input-0-0-name"))
-      .sendKeys(IdentifierName)
-
-    driver
-      .findElement(By.id(identifierValueForPTA))
-      .sendKeys(NINumber)
+    sendKeys(By.id("enrolment[0].name"), EnrolmentKey)
+    sendKeys(By.id("input-0-0-name"), IdentifierName)
+    sendKeys(By.id(identifierValueForPTA), NINumber)
   }
 
   val NINumber = "AB654321A"

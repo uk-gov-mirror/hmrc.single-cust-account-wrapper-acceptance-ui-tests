@@ -34,8 +34,8 @@ object CheckYourVATHomePage extends BasePage {
 
   def provideVATPeriod(period: String): Turnover.type = {
     period match {
-      case "Annually" => driver.findElement(By.id(annuallyRadioButton)).click()
-      case _          => driver.findElement(By.id(quarterlyRadioButton)).click()
+      case "Annually" => click(By.id(annuallyRadioButton))
+      case _          => click(By.id(quarterlyRadioButton))
     }
     submitPage()
     Turnover

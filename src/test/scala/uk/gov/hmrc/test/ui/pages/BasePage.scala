@@ -19,8 +19,6 @@ package uk.gov.hmrc.test.ui.pages
 import commonstepdefs.CommonFunctions
 import org.openqa.selenium.By
 import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
-
 
 abstract class BasePage extends Matchers with CommonFunctions {
   val continueButton = "continue-button"

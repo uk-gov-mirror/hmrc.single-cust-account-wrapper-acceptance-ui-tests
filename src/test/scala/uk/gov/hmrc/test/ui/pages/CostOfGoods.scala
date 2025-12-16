@@ -25,7 +25,7 @@ object CostOfGoods extends BasePage {
 
   def provideCostOfGoodsAmount(amount: String): this.type = {
     onPage(costOfGoods)
-    driver.findElement(By.id(costOfGoodsInput)).sendKeys(amount)
+    sendKeys(By.id(costOfGoodsInput), amount)
     this
   }
 
