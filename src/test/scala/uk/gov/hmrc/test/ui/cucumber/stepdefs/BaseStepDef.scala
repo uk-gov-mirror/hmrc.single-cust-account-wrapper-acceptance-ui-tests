@@ -16,12 +16,12 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
+import commonstepdefs.CommonFunctions
 import io.cucumber.scala.{EN, ScalaDsl}
 import org.scalatest.concurrent.Eventually
 import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
-trait BaseStepDef extends ScalaDsl with EN with BrowserDriver with Eventually with Matchers {
+trait BaseStepDef extends ScalaDsl with EN with Eventually with Matchers with CommonFunctions {
 
 
 }

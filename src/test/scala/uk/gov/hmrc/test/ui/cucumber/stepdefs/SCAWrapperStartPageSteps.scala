@@ -55,7 +55,7 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
   }
   Then("""User should able to see (.*) link directly above the footer in Jenkins$""") { (FeedbackLink: String) =>
     //TODO find out why the xpath is different when the service isn't running locally
-    driver.findElement(By.xpath("//span[@class='govuk-phase-banner__text']")).isDisplayed
+    findBy(By.xpath("//span[@class='govuk-phase-banner__text']")).isDisplayed
     assert(SCAStartPage.FeedBackLinkJenkins(FeedbackLink))
   }
   When("""User click on feedback link""") { () =>
@@ -157,15 +157,15 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
   When("""^the user clicks on (.*) menu$""") { (linkName: String) =>
     linkName match {
       case "Account home" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
       case "Messages" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
       case "Check progress" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
       case "Profile and settings" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
       case "Sign out" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
 
     }
   }
@@ -173,19 +173,19 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
   When("""^User clicks on (.*) footer link$""") { (linkName: String) =>
     linkName match {
       case "Cookies" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
       case "Accessibility statement" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
       case "Privacy policy" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
       case "Terms and conditions" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
       case "Help using GOV.UK" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
       case "Contact" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
       case "Rhestr o Wasanaethau Cymraeg" =>
-        driver.findElement(By.partialLinkText(linkName)).click()
+        click(By.partialLinkText(linkName))
 
     }
   }
@@ -198,7 +198,7 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
 
 
   Then("""user should redirect to (.*) page$""") { (locator: String) =>
-    driver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
+    findBy(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
   }
 
 
@@ -212,7 +212,7 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
           ExpectedConditions.urlContains("/personal-account")
         )
       )
-      driver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
+      findBy(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
       driver.navigate().back()
     }
 
@@ -223,11 +223,11 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
           ExpectedConditions.urlContains("/personal-account")
         )
       )
-      driver.findElement(By.id("sps-opt-in-2")).click()
-      driver.findElement(By.id("submitEmailButton")).click()
+      click(By.id("sps-opt-in-2"))
+      click(By.id("submitEmailButton"))
       wait.until(ExpectedConditions.urlContains("/paperless/optout-confirmation?"))
-      driver.findElement(By.id("submitEmailButton")).click()
-      driver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
+      click(By.id("submitEmailButton"))
+      findBy(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
       driver.navigate().back()
       driver.navigate().back()
       driver.navigate().back()
@@ -236,12 +236,12 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
   }
 
   Then("""User should see cookies banner""") { () =>
-    driver.findElement(By.xpath("//*[contains(text(),'Accept additional cookies')]")).isDisplayed
+    findBy(By.xpath("//*[contains(text(),'Accept additional cookies')]")).isDisplayed
 
   }
   Then("""User should able to close it""") { () =>
-    driver.findElement(By.xpath("//*[contains(text(),'Accept additional cookies')]")).click()
-    driver.findElement(By.xpath("//*[contains(text(),'Hide cookies message')]")).click()
+    click(By.xpath("//*[contains(text(),'Accept additional cookies')]"))
+    click(By.xpath("//*[contains(text(),'Hide cookies message')]"))
   }
 
   Then("""User should not see Business tax account menu option""") { () =>
@@ -297,18 +297,18 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
 
   And("""^the user should see (.*) as the number of messages$""") { (messages: String) =>
     driver.navigate().refresh()
-    driver.findElement(By.partialLinkText("Messages")).click()
+    click(By.partialLinkText("Messages"))
     val actualMessagesText =
-      driver.findElement(By.className("hmrc-notification-badge")).getText
+      findBy(By.className("hmrc-notification-badge")).getText
 
     actualMessagesText shouldBe messages
   }
 
   And("""the user should see the message on the page after clicking the message""") { () =>
-    driver.findElement(By.xpath("//*[contains(text(),'Messages')]")).click()
-    driver.findElement(By.xpath("//span[@class='govuk-!-font-weight-bold black-text govuk-body']")).click()
-    driver.findElement(By.xpath("//p[@class='message_time faded-text--small govuk-body']")).isDisplayed
-    driver.findElement(By.id("back-link")).click()
+    click(By.xpath("//*[contains(text(),'Messages')]"))
+    click(By.xpath("//span[@class='govuk-!-font-weight-bold black-text govuk-body']"))
+    findBy(By.xpath("//p[@class='message_time faded-text--small govuk-body']")).isDisplayed
+    click(By.id("back-link"))
 
   }
 

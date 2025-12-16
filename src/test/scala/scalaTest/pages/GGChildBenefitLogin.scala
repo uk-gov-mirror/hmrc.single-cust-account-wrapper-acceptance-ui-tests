@@ -16,13 +16,14 @@
 
 package scalaTest.pages
 
+import commonstepdefs.CommonFunctions
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.PagePaths.{FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
-object GGChildBenefitLogin extends BasePage with GGloginPagePaths with SCAStartPagePaths with FeedbackPagePaths {
+object GGChildBenefitLogin extends BasePage with GGloginPagePaths with SCAStartPagePaths with FeedbackPagePaths with CommonFunctions {
 
 
   def navigateToBaseUrl(url: String): Unit = {
@@ -39,41 +40,36 @@ object GGChildBenefitLogin extends BasePage with GGloginPagePaths with SCAStartP
   def deleteCookies(): Unit =
     Driver.instance.manage().deleteAllCookies()
 
-  def setConfidenceLevel(): Unit =
-    Driver.instance.findElement(By.id("confidenceLevel")).sendKeys("200")
+  def setConfidenceLevel(): Unit = {
+    sendKeys(By.id("confidenceLevel"), "200")
+  }
 
-  def setOrganisationAffinityGroup(): Unit =
-    Driver.instance.findElement(By.id("affinityGroupSelect")).sendKeys("Organisation")
+  def setOrganisationAffinityGroup(): Unit = {
+    sendKeys(By.id("affinityGroupSelect"), "Organisation")
+  }
+
 
   def enterNINO(nino: String): Unit =
     nino match {
       case "invalidService" =>
-      case _                => driver.findElement(By.id("nino")).sendKeys(nino)
+      case _                => sendKeys(By.id("nino"), nino)
     }
 
-  def clickSubmitButton(): Unit =
-    Driver.instance.findElement(By.id("submit")).click()
+  def clickSubmitButton(): Unit = {
+    click(By.id("submit"))
+  }
 
   def selectSAEnrolment(): Unit = {
-    val EnrolmentSelect: Select = new Select(Driver.instance.findElement(By.id(dropdown)))
+    val EnrolmentSelect: Select = new Select(findBy(By.id(dropdown)))
     EnrolmentSelect.selectByVisibleText(SelfAssessment)
-    Driver.instance.findElement(By.id(addPresent)).click()
-    Driver.instance
-      .findElement(By.id(identifierValueForUTRNumber))
-      .sendKeys(UTRNumber)
+    click(By.id(addPresent))
+    sendKeys(By.id(identifierValueForUTRNumber), UTRNumber)
   }
 
   def selectPTAEnrolment(): Unit = {
-    Driver.instance
-      .findElement(By.id("enrolment[0].name"))
-      .sendKeys(EnrolmentKey)
-    Driver.instance
-      .findElement(By.id("input-0-0-name"))
-      .sendKeys(IdentifierName)
-
-    Driver.instance
-      .findElement(By.id(identifierValueForPTA))
-      .sendKeys(NINumber)
+    sendKeys(By.id("enrolment[0].name"), EnrolmentKey)
+    sendKeys(By.id("input-0-0-name"), IdentifierName)
+    sendKeys(By.id(identifierValueForPTA), NINumber)
   }
 
   val NINumber = "AB654321A"

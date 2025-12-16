@@ -30,55 +30,37 @@ object GGChocsLoginPage extends BasePage with GGloginPagePaths with SCAStartPage
     driver.navigate().to(Configuration.settings.AUTHLOGINSTUB)
 
   def enterRedirectURL(): Unit =
-
-
-   driver
-     .findElement(By.name(redirectURLField))
-      .sendKeys(Configuration.settings.CHOCS_PAGE)
+    sendKeys(By.name(redirectURLField), Configuration.settings.CHOCS_PAGE)
 
   def enterRedirectActionURL(): Unit =
-    driver
-      .findElement(By.name(redirectURLField))
-      .sendKeys(Configuration.settings.ACTIONS_PAGE)
+    sendKeys(By.name(redirectURLField), Configuration.settings.ACTIONS_PAGE)
 
   def selectConfidenceLevel(): Unit = {
-    val confidenceLevel: Select = new Select(driver.findElement(By.name(confidenceLevelField)))
+    val confidenceLevel: Select = new Select(findBy(By.name(confidenceLevelField)))
     confidenceLevel.selectByValue("200")
   }
   def enterNino(): Unit        =
-    driver
-      .findElement(By.name(nino))
-      .sendKeys(NINumber)
+      sendKeys(By.name(nino), NINumber)
 
   def enterNino(ninoNumber: String): Unit        =
-    driver
-      .findElement(By.name(nino))
-      .sendKeys(ninoNumber)
+      sendKeys(By.name(nino), ninoNumber)
 
   def selectSAEnrolment(): Unit = {
-    val EnrolmentSelect: Select = new Select(driver.findElement(By.id(dropdown)))
+    val EnrolmentSelect: Select = new Select(findBy(By.id(dropdown)))
     EnrolmentSelect.selectByVisibleText(SelfAssessment)
-    driver.findElement(By.id(addPresent)).click()
-    driver
-      .findElement(By.id(identifierValueForUTRNumber))
-      .sendKeys(UTRNumber)
+    click(By.id(addPresent))
+    sendKeys(By.id(identifierValueForUTRNumber), UTRNumber)
   }
 
   def selectPTAEnrolment(): Unit = {
-    driver
-      .findElement(By.id("enrolment[0].name"))
-      .sendKeys(EnrolmentKey)
-    driver
-      .findElement(By.id("input-0-0-name"))
-      .sendKeys(IdentifierName)
-
-    driver
-      .findElement(By.id(identifierValueForPTA))
-      .sendKeys(NINumber)
+      sendKeys(By.id("enrolment[0].name"), EnrolmentKey)
+      sendKeys(By.id("input-0-0-name"), IdentifierName)
+      sendKeys(By.id(identifierValueForPTA), NINumber)
   }
 
-  def clickSubmitButton(): Unit =
-    driver.findElement(By.id(submitButton)).click()
+  def clickSubmitButton(): Unit = {
+    click(By.id(submitButton))
+  }
 
   val NINumber                    = "ER872414B"
   val dropdown                    = "presets-dropdown"

@@ -16,16 +16,17 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import commonstepdefs.CommonFunctions
 import org.openqa.selenium.By
 import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
-
-abstract class BasePage extends BrowserDriver with Matchers {
+abstract class BasePage extends Matchers with CommonFunctions {
   val continueButton = "continue-button"
 
-  def submitPage(): Unit =
-    driver.findElement(By.id(continueButton)).click()
+  def submitPage(): Unit = {
+    click(By.id(continueButton))
+  }
+
 
   def onPage(pageTitle: String): Unit =
     if (driver.getTitle != pageTitle)

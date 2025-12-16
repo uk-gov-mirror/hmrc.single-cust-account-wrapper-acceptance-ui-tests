@@ -82,9 +82,9 @@ object ActivityPage
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(niURL), niLink))
   }
 
-  def clickOnTaxReturn(): Unit = driver.findElement(By.linkText(taxReturnLink)).click()
+  def clickOnTaxReturn(): Unit = click(By.linkText(taxReturnLink))
 
-  def clickOnStatePensionSummary(): Unit = driver.findElement(By.linkText(statePensionLink)).click()
+  def clickOnStatePensionSummary(): Unit = click(By.linkText(statePensionLink))
 
   def verifyStatePensionPageURL() =
     new FluentWait[WebDriver](driver)
@@ -92,7 +92,7 @@ object ActivityPage
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.urlMatches(Configuration.settings.STATEPENSION_PAGE))
 
-  def clickOnNIRecord(): Unit = driver.findElement(By.linkText(niLink)).click()
+  def clickOnNIRecord(): Unit = click(By.linkText(niLink))
 
   def verifyNIRecordPageURL() =
     new FluentWait[WebDriver](driver)
@@ -106,11 +106,11 @@ object ActivityPage
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(scaMessage), Message))
 
-  def clickOnMessage(): Unit = driver.findElement(By.partialLinkText(yourMessage)).click()
+  def clickOnMessage(): Unit = click(By.partialLinkText(yourMessage))
 
-  def clickOnBackButton(): Unit = driver.findElement(By.className(backButton)).click()
+  def clickOnBackButton(): Unit = click(By.className(backButton))
 
-  def clickOnFeedback(): Unit = driver.findElement(By.xpath(FeedbacklinkJenkins)).click()
+  def clickOnFeedback(): Unit = click(By.xpath(FeedbacklinkJenkins))
 
   def returnToPreviousPage(): Unit = driver.navigate.back()
 
@@ -185,7 +185,7 @@ object ActivityPage
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(pageFeedback), Feedbackpage))
 
-  def clickOnPageNotWorkingProperly(): Unit = driver.findElement(By.linkText(pageNotWorkingProperlyLink)).click()
+  def clickOnPageNotWorkingProperly(): Unit = click(By.linkText(pageNotWorkingProperlyLink))
 
   def PageNotWorkingProperlyLink(PageNotWorkingProperly: String) =
     new FluentWait[WebDriver](driver)
@@ -227,7 +227,7 @@ object ActivityPage
           .textToBePresentInElementLocated(By.linkText(AccessibilitystatementLink), Accessibilitystatement)
       )
 
-  def clickOnAccessibilitystatementLink(): Unit = driver.findElement(By.linkText(AccessibilitystatementLink)).click()
+  def clickOnAccessibilitystatementLink(): Unit = click(By.linkText(AccessibilitystatementLink))
 
   def WrapperSCAFooter(
     Cookies: String,
@@ -281,9 +281,9 @@ object ActivityPage
     for (txt <- txts)
       assert(driver.getPageSource.contains(txt), s"\n'$txt' text was not found on the page")
 
-  def clickOnCymraeg(Servicename: String): Unit = driver.findElement(By.xpath("//a[@href='/"+Servicename+"/hmrc-frontend/language/cy']")).click()
+  def clickOnCymraeg(Servicename: String): Unit = click(By.xpath("//a[@href='/"+Servicename+"/hmrc-frontend/language/cy']"))
 
   def clickOnEnglish(Servicename: String): Unit =
-    driver.findElement(By.xpath("//a[@href='/"+Servicename+"/hmrc-frontend/language/en']")).click()
+    click(By.xpath("//a[@href='/"+Servicename+"/hmrc-frontend/language/en']"))
 
 }

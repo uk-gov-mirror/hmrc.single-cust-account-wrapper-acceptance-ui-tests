@@ -26,7 +26,7 @@ import java.time.Duration
 object GGLoginPageInvalidConfidenceLevel extends BasePage with GGloginPagePaths {
 
   def selectConfidenceLevel(): Unit = {
-    val confidenceLevel: Select = new Select(driver.findElement(By.name(confidenceLevelField)))
+    val confidenceLevel: Select = new Select(findBy(By.name(confidenceLevelField)))
     confidenceLevel.selectByValue("50")
   }
 

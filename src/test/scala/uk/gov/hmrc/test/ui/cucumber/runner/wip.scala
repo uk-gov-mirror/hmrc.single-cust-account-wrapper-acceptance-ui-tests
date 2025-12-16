@@ -22,7 +22,7 @@ import org.junit.runner.RunWith
 @RunWith(classOf[Cucumber])
 @CucumberOptions(
   features = Array("src/test/resources"),
-  glue = Array("uk.gov.hmrc.test.ui.cucumber.stepdefs"),
+  glue = Array("uk.gov.hmrc.test.ui.cucumber.stepdefs", "commonstepdefs"),
   plugin = Array("pretty", "html:target/cucumber.html", "json:target/cucumber.json", "junit:target/test-reports/Runner.xml"),
   tags = "@wip"
 )

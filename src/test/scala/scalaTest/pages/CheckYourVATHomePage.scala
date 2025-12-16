@@ -16,11 +16,12 @@
 
 package scalaTest.pages
 
+import commonstepdefs.CommonFunctions
 import org.openqa.selenium.By
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
-object CheckYourVATHomePage extends BasePage {
+object CheckYourVATHomePage extends BasePage with CommonFunctions {
   val url: String     = TestConfiguration.url("example-frontend") + "/vat-return-period"
   val vatReturnPeriod = "Enter your VAT return details - Check your VAT flat rate - GOV.UK"
 
@@ -35,8 +36,8 @@ object CheckYourVATHomePage extends BasePage {
 
   def provideVATPeriod(period: String): Turnover.type = {
     period match {
-      case "Annually" => driver.findElement(By.id(annuallyRadioButton)).click()
-      case _          => driver.findElement(By.id(quarterlyRadioButton)).click()
+      case "Annually" => click(By.id(annuallyRadioButton))
+      case _          => click(By.id(quarterlyRadioButton))
     }
     submitPage()
     Turnover

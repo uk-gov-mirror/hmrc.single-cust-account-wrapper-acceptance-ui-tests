@@ -19,9 +19,8 @@ package scalaTest.pages
 import org.openqa.selenium.By
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.selenium.webdriver.Driver
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
-abstract class BasePage extends BrowserDriver with Matchers {
+abstract class BasePage extends Matchers {
   val continueButton = "continue-button"
 
   def submitPage(): Unit =
