@@ -17,23 +17,33 @@
 package uk.gov.hmrc.test.ui.pages
 
 import play.api.libs.json.JsValue
-import scalaj.http.Http
-
-case class MessageCount(
-  count: Int
-)
+import sttp.client3.{HttpClientSyncBackend, UriContext, basicRequest}
+import sttp.model.{MediaType, StatusCode}
 
 object MessagesStub {
 
-  def postMessagesStub(requestBody: JsValue, env: String) = {
-    if(env == "local"){
-      val body = requestBody.toString()
-      Http("http://localhost:8910/messages")
-        .method("POST")
-        .postData(body)
-        .header("Content-type", "application/json")
-        .asString.isSuccess
-    }
+  object HttpClientBackend {
+    val backend = HttpClientSyncBackend()
   }
 
+  def postMessagesStub(requestBody: JsValue, env: String): Boolean = {
+    if (env == "local") {
+      val response =
+        basicRequest
+          .post(uri"http://localhost:8910/messages")
+          .contentType(MediaType.ApplicationJson)
+          .body(requestBody.toString())
+          .send(HttpClientBackend.backend)
+
+      response.code match {
+        case StatusCode.Ok | StatusCode.Created =>
+          true
+        case _ =>
+          false
+      }
+    } else {
+      false
+    }
+  }
 }
+
