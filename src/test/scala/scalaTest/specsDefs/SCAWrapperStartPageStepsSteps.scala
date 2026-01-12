@@ -21,16 +21,15 @@ import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
 import org.openqa.selenium.{By, NoSuchElementException}
 import org.scalatest.matchers.should.Matchers.shouldBe
 import play.api.libs.json.Json
+import scalaTest.pages.GGLoginPage.*
+import scalaTest.pages.{MessagesStub, SCAStartPage}
+import scalaTest.utils.MongoConnection
 import uk.gov.hmrc.selenium.webdriver.Driver
-import uk.gov.hmrc.test.ui.cucumber.stepdefs.BaseStepDef
-import uk.gov.hmrc.test.ui.pages.GGLoginPage.{AccountHomeIcon, banner}
-import uk.gov.hmrc.test.ui.pages.{MessagesStub, SCAStartPage}
-import uk.gov.hmrc.test.ui.utils.MongoConnection
 
 import java.time.Duration
 import scala.util.Random
 
-object SCAWrapperStartPageStepsSteps extends BaseStepDef {
+object SCAWrapperStartPageStepsSteps {
 
   // SA enrolment is applied
   def SAEnrolmentIsApplied(): Unit = {
@@ -162,7 +161,7 @@ object SCAWrapperStartPageStepsSteps extends BaseStepDef {
           linkName match {
             case "Cymraeg" =>
               assert(
-                !driver
+                !Driver.instance
                   .findElement(By.cssSelector("a[href*='/single-customer-account/hmrc-frontend/language/cy']"))
                   .isEnabled,
                 s"language $linkName is present on the page"
@@ -170,7 +169,7 @@ object SCAWrapperStartPageStepsSteps extends BaseStepDef {
 
             case "English" =>
               assert(
-                !driver
+                !Driver.instance
                   .findElement(By.cssSelector("a[href*='/single-customer-account/hmrc-frontend/language/en']"))
                   .isEnabled,
                 s"language $linkName is present on the page"
@@ -230,7 +229,7 @@ object SCAWrapperStartPageStepsSteps extends BaseStepDef {
 
   // user should go through tax letter journey and redirect to Account home page
   def taxLetterJourneyRedirectToAccountHomePage(): Unit = {
-    val wait = new WebDriverWait(driver, Duration.ofSeconds(50))
+    val wait = new WebDriverWait(Driver.instance, Duration.ofSeconds(50))
 
         if (Driver.instance.getCurrentUrl.contains("/personal-account")) {
           wait.until(

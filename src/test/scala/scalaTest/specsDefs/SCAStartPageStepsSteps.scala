@@ -17,10 +17,9 @@
 package scalaTest.specsDefs
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.test.ui.cucumber.stepdefs.BaseStepDef
-import uk.gov.hmrc.test.ui.pages.SCAStartPage
+import scalaTest.pages.*
 
-object SCAStartPageStepsSteps extends BaseStepDef{
+object SCAStartPageStepsSteps {
 
   // User is on SCA start page$
   def userIsOnSCAStartPage(): Unit = {

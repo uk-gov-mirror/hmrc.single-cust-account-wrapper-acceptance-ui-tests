@@ -18,9 +18,8 @@ package scalaTest.specsDefs
 
 import org.junit.Assert.assertTrue
 import org.openqa.selenium.By
+import scalaTest.pages.SCAStartPage
 import uk.gov.hmrc.selenium.webdriver.Driver
-import uk.gov.hmrc.test.ui.pages.ActivityPage.driver
-import uk.gov.hmrc.test.ui.pages.SCAStartPage
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

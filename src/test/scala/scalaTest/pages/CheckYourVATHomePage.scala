@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@ package scalaTest.pages
 
 import commonstepdefs.CommonFunctions
 import org.openqa.selenium.By
+import scalaTest.conf.TestConfiguration
 import uk.gov.hmrc.selenium.webdriver.Driver
-import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object CheckYourVATHomePage extends BasePage with CommonFunctions {
   val url: String     = TestConfiguration.url("example-frontend") + "/vat-return-period"

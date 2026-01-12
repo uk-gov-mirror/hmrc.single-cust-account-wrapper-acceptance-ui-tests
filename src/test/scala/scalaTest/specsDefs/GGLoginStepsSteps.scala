@@ -16,7 +16,7 @@
 
 package scalaTest.specsDefs
 
-import uk.gov.hmrc.test.ui.pages.*
+import scalaTest.pages.*
 
 object GGLoginStepsSteps {
 

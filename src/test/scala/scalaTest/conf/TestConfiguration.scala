@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.conf
+package scalaTest.conf
 
 import com.typesafe.config.{Config, ConfigFactory}
 

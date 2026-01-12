@@ -26,3 +26,5 @@ lib_managed
 src_managed/
 project/project
 project/target
+/failed-scenarios.txt
+/test-output-clean.log

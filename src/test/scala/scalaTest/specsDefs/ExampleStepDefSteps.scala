@@ -16,9 +16,9 @@
 
 package scalaTest.specsDefs
 
-import uk.gov.hmrc.test.ui.pages.CheckYourVATResult.*
-import uk.gov.hmrc.test.ui.pages.CheckYourVATHomePage
-import uk.gov.hmrc.test.ui.pages.CheckYourVATHomePage.provideVATPeriod
+import scalaTest.pages.*
+import scalaTest.pages.CheckYourVATHomePage.*
+import scalaTest.pages.CheckYourVATResult.{result, useSetVATFlatRate, useUniqueVATFlatRate}
 
 object ExampleStepDefSteps {
 

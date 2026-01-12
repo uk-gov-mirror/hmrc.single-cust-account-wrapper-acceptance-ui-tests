@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,9 @@ package scalaTest.pages
 
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.Select
+import scalaTest.PagePaths.{FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
+import scalaTest.pages.config.Configuration
 import uk.gov.hmrc.selenium.webdriver.Driver
-import uk.gov.hmrc.test.ui.PagePaths.{FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
-import uk.gov.hmrc.test.ui.pages.config.Configuration
 
 object GGChocsLoginPage extends BasePage with GGloginPagePaths with SCAStartPagePaths with FeedbackPagePaths {
 

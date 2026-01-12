@@ -16,7 +16,7 @@
 
 package scalaTest.specsDefs
 
-import uk.gov.hmrc.test.ui.pages.{GGLoginPage, GGLoginPageInvalidConfidenceLevel}
+import scalaTest.pages.*
 
 object GGLoginInvalidConfidenceLevelSteps {
 

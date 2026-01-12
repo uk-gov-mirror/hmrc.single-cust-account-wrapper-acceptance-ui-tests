@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,9 @@ package scalaTest.pages
 
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select}
 import org.openqa.selenium.{By, WebDriver}
+import scalaTest.PagePaths.GGloginPagePaths
+import scalaTest.pages.GGLoginPage.SCAAccessErrorText
 import uk.gov.hmrc.selenium.webdriver.Driver
-import uk.gov.hmrc.test.ui.PagePaths.GGloginPagePaths
-import uk.gov.hmrc.test.ui.pages.GGLoginPage.SCAAccessErrorText
 
 import java.time.Duration
 
