@@ -18,9 +18,8 @@ package scalaTest.specsDefs
 
 import scalaTest.pages.*
 
-object GGLoginStepsSteps {
+object GGLoginSteps {
 
-  // ^User login to the GG Login Page$
   def loginWithGG(): Unit = {
     GGLoginPage.navigateToAuthLoginStub()
         GGLoginPage.enterRedirectURL()
@@ -30,7 +29,6 @@ object GGLoginStepsSteps {
         GGLoginPage.clickSubmitButton()
   }
 
-  // ^User login to the GG Login Page Without SA enrollment$
   def loginWithGGWithoutSAEnrollment(): Unit = {
     GGLoginPage.navigateToAuthLoginStub()
         GGLoginPage.enterRedirectURL()
@@ -39,7 +37,6 @@ object GGLoginStepsSteps {
         GGLoginPage.clickSubmitButton()
   }
 
-  // ^User login to the GG Login Page with PTA enrolment$
   def loginWithGGWithPTAEnrolment(): Unit = {
     GGLoginPage.navigateToAuthLoginStub()
         GGLoginPage.enterRedirectURL()
@@ -49,7 +46,6 @@ object GGLoginStepsSteps {
         GGLoginPage.clickSubmitButton()
   }
 
-  // ^User login to the Chocs GG Login Page$
   def loginWithChocsGG(): Unit = {
     GGChocsLoginPage.navigateToAuthLoginStub()
         GGChocsLoginPage.enterRedirectURL()
@@ -60,7 +56,6 @@ object GGLoginStepsSteps {
         GGChocsLoginPage.clickSubmitButton()
   }
 
-  // ^User login to the Chocs GG Login Page Without SA enrollment$
   def loginWithChocsGGWithoutSAEnrollment(): Unit = {
     GGChocsLoginPage.navigateToAuthLoginStub()
         GGChocsLoginPage.enterRedirectURL()
@@ -70,7 +65,6 @@ object GGLoginStepsSteps {
         GGChocsLoginPage.clickSubmitButton()
   }
 
-  // ^User login to the Chocs GG Login Page with PTA enrolment$
   def loginWithChocsWithPTAEnrolment(): Unit = {
     GGChocsLoginPage.navigateToAuthLoginStub()
         GGChocsLoginPage.enterRedirectURL()
@@ -80,7 +74,6 @@ object GGLoginStepsSteps {
         GGChocsLoginPage.clickSubmitButton()
   }
 
-  // ^User login to the actions GG Login Page with nino (.*)$
   def loginToActionsGGWithNino(ninoNumber: String): Unit = {
     GGChocsLoginPage.navigateToAuthLoginStub()
         GGChocsLoginPage.enterRedirectActionURL()
@@ -90,7 +83,6 @@ object GGLoginStepsSteps {
         GGChocsLoginPage.clickSubmitButton()
   }
 
-  // ^User login to the NINO GG Login Page$
   def loginToNinoGG(): Unit = {
     GGNINOLoginPage.navigateToAuthLoginStub()
         GGNINOLoginPage.enterRedirectURL()
@@ -100,7 +92,6 @@ object GGLoginStepsSteps {
         GGNINOLoginPage.clickSubmitButton()
   }
 
-  // ^User login to the NINO GG Login Page Without SA enrollment$
   def loginToNinoGGWithoutSAEnrollment(): Unit = {
     GGNINOLoginPage.navigateToAuthLoginStub()
         GGNINOLoginPage.enterRedirectURL()
@@ -109,7 +100,6 @@ object GGLoginStepsSteps {
         GGNINOLoginPage.clickSubmitButton()
   }
 
-  // ^User login to the NINO GG Login Page with PTA enrolment$
   def loginToNinoGGWithPTAEnrolment(): Unit = {
     GGNINOLoginPage.navigateToAuthLoginStub()
         GGNINOLoginPage.enterRedirectURL()
@@ -119,7 +109,6 @@ object GGLoginStepsSteps {
         GGNINOLoginPage.clickSubmitButton()
   }
 
-  // ^I accesses the (.*) page with nino (.*)$
   def accessPageWithNino(url: String, nino: String): Unit = {
     url match {
           case "/actions" =>
@@ -143,7 +132,6 @@ object GGLoginStepsSteps {
         }
   }
 
-  // ^User login to the activity Login Page$
   def loginToActivityPage(): Unit = {
     GGLoginPage.navigateToAuthLoginStub()
         GGLoginPage.enterRedirectActivityURL()

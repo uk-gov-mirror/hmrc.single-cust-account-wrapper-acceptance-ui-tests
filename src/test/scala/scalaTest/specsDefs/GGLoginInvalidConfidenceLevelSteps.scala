@@ -20,20 +20,17 @@ import scalaTest.pages.*
 
 object GGLoginInvalidConfidenceLevelSteps {
 
-  // User login to the GGLogin Page$
   def userLoginToTheGGLoginPage(): Unit = {
     GGLoginPage.navigateToAuthLoginStub()
         GGLoginPage.enterRedirectURL()
   }
 
-  // ^Confidence level less is less than 200$
   def confidenceLevelLessThan200(): Unit = {
     GGLoginPageInvalidConfidenceLevel.selectConfidenceLevel()
         GGLoginPage.enterNino()
         GGLoginPage.clickSubmitButton()
   }
 
-  // ^User should see SCA home page with an error "([^"]*)"$
   def SCAHomePageError()(accessError: String): Unit = {
     assert(GGLoginPageInvalidConfidenceLevel.verifySCAStartPageAccessError(accessError))
   }

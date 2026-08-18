@@ -3,8 +3,6 @@
 How to run acceptance tests locally?
 -----------------------------------
 
-In a local development environment, testers make use of `Selenium Manager` via the `ui-test-runner` library to manage configuring, starting and stopping browsers used for UI journey tests.
-
 # Clone the project:
 
 Clone the project [https://github.com/hmrc/single-cust-account-wrapper-acceptance-ui-tests ] to a directory of your choice

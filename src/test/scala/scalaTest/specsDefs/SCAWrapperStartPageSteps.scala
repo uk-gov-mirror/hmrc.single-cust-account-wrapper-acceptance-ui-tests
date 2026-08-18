@@ -19,7 +19,6 @@ package scalaTest.specsDefs
 import org.junit.Assert.assertTrue
 import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
 import org.openqa.selenium.{By, NoSuchElementException}
-import org.scalatest.matchers.should.Matchers.shouldBe
 import play.api.libs.json.Json
 import scalaTest.pages.GGLoginPage.*
 import scalaTest.pages.{MessagesStub, SCAStartPage}
@@ -29,87 +28,70 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 import java.time.Duration
 import scala.util.Random
 
-object SCAWrapperStartPageStepsSteps {
+object SCAWrapperStartPageSteps {
 
-  // SA enrolment is applied
   def SAEnrolmentIsApplied(): Unit = {
     print("SA enrollment is applied")
   }
 
-  // User should see (.*) menu option$
   def menuOption(BTA: String): Unit = {
     assert(SCAStartPage.SCABTALink(BTA))
   }
 
-  // User should see following option in menu (.*), (.*), (.*), (.*) and (.*)$
   def optionsInMenu(AccountHome: String, Messages: String, CheckProgress: String, ProfileAndSettings: String, SignOut: String): Unit = {
     assert(SCAStartPage.WrapperSCAMenu(AccountHome, Messages, CheckProgress, ProfileAndSettings, SignOut))
   }
 
-  // User should also see (.*) icon besides account home menu option$
   def iconBesidesAccountHomeMenu(value: String): Unit = {
     SCAStartPage.assertContent(By.xpath(AccountHomeIcon), value)
   }
 
-  // default content of phase status should be (.*)$
   def defaultContentOfPhaseStatus(Message: String): Unit = {
     SCAStartPage.assertContent(By.xpath(banner), Message)
   }
 
-  // User should able to see (.*) link directly above the footer$
   def linkDirectlyAboveTheFooter(FeedbackLink: String): Unit = {
     assert(SCAStartPage.FeedBackLink(FeedbackLink))
   }
 
-  // User should able to see (.*) link directly above the footer in Jenkins$
   def linkDirectlyAboveTheFooterInJenkins(FeedbackLink: String): Unit = {
-    //TODO find out why the xpath is different when the service isn't running locally
         Driver.instance.findElement(By.xpath("//span[@class='govuk-phase-banner__text']")).isDisplayed
         assert(SCAStartPage.FeedBackLinkJenkins(FeedbackLink))
   }
 
-  // User click on feedback link
   def clickOnFeedbackLink(): Unit = {
     SCAStartPage.clickOnFeedback()
   }
 
-  // it should redirect to (.*) page$
   def redirectToPage(Feedbackpage: String): Unit = {
     assert(SCAStartPage.FeedBackPage(Feedbackpage))
   }
 
-  // User should see (.*) directly above the footer$
   def textDirectlyAboveTheFooter(PageNotWorkingProperly: String): Unit = {
     assert(SCAStartPage.PageNotWorkingProperlyLink(PageNotWorkingProperly))
   }
 
-  // User click on Is this page not working properly link
   def clickOnIsThisPageNotWorkingProperly(): Unit = {
     SCAStartPage.clickOnPageNotWorkingProperly()
   }
 
-  // User should redirect to (.*) page$
   def redirectTo(PageNotWorkingProperly: String): Unit = {
     SCAStartPage.moveToTab()
         assert(SCAStartPage.PageNotWorkingProperly(PageNotWorkingProperly))
   }
 
-  // Verify redirected URL should contains service name as (.*)$
   def verifyRedirectedURLContainsServiceName(Servicename: String): Unit = {
     SCAStartPage.VerifyServiceName(Servicename)
   }
 
-  // User should see (.*) link in the footer$
   def seeLinkInTheFooter(Accessibilitystatement: String): Unit = {
     assert(SCAStartPage.AccessibilitystatementLink(Accessibilitystatement))
   }
 
-  // User click on 'Accessibility statement' link
   def clickOnAccessibilityStatement(): Unit = {
     SCAStartPage.clickOnAccessibilitystatementLink()
   }
 
-  // User should see (.*), (.*), (.*), (.*), (.*), (.*) and (.*) links in the footer$
   def userShouldSee(Cookies: String,
                     AccessibilityStatement: String,
                     PrivacyPolicy: String,
@@ -128,7 +110,6 @@ object SCAWrapperStartPageStepsSteps {
           )
   }
 
-  // ^the user sees relevant content in welsh language$
   def seesRelevantContentInWelshLanguage(): Unit = {
     val texts =
           List("Hafan y cyfrif", "Negeseuon", "Gwirio cynnydd", "Proffil a gosodiadau", "Allgofnodi", "Cyfrif treth busnes", "Cyfrif Cwsmer Sengl")
@@ -138,24 +119,20 @@ object SCAWrapperStartPageStepsSteps {
         SCAStartPage.textContentVerify(othertexts)
   }
 
-  // the user clicks on 'Cymraeg' welesh language link of (.*)$
   def clickOnCymraeWeleshLanguage(Servicename: String): Unit = {
     SCAStartPage.clickOnCymraeg(Servicename)
   }
 
-  // the user clicks on 'English' language link of (.*)$
   def clickOnEnglishLanguage(Servicename: String): Unit = {
     SCAStartPage.clickOnEnglish(Servicename)
   }
 
-  // the user sees relevant content in English language
   def seesRelevantContentInEnglishLanguage(): Unit = {
     val texts = List("Single Customer Account", "Account home", "Messages", "Check progress", "Profile and settings", "Business tax account", "Sign out")
 
         SCAStartPage.textContentVerify(texts)
   }
 
-  // ^the user can not click language '(.*)' link$
   def cannotClickLanguageLink(linkName: String): Unit = {
     intercept[NoSuchElementException] {
           linkName match {
@@ -178,7 +155,6 @@ object SCAWrapperStartPageStepsSteps {
         }
   }
 
-  // ^the user clicks on (.*) menu$
   def clickOnMenu(linkName: String): Unit = {
     linkName match {
           case "Account home" =>
@@ -195,7 +171,6 @@ object SCAWrapperStartPageStepsSteps {
         }
   }
 
-  // ^User clicks on (.*) footer link$
   def clicksOnFooterLink(linkName: String): Unit = {
     linkName match {
           case "Cookies" =>
@@ -216,18 +191,15 @@ object SCAWrapperStartPageStepsSteps {
         }
   }
 
-  // user should redirects to track page$
   def redirectsToTrackPage(): Unit = {
     val trackURL = Driver.instance.getCurrentUrl
         trackURL.contains("/track")
   }
 
-  // user should redirect to (.*) page$
   def redirectsToPage(locator: String): Unit = {
     Driver.instance.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
   }
 
-  // user should go through tax letter journey and redirect to Account home page
   def taxLetterJourneyRedirectToAccountHomePage(): Unit = {
     val wait = new WebDriverWait(Driver.instance, Duration.ofSeconds(50))
 
@@ -260,28 +232,23 @@ object SCAWrapperStartPageStepsSteps {
         }
   }
 
-  // User should see cookies banner
   def seeCookiesBanner(): Unit = {
     Driver.instance.findElement(By.xpath("//*[contains(text(),'Accept additional cookies')]")).isDisplayed
   }
 
-  // User should able to close it
   def closeCookies(): Unit = {
     Driver.instance.findElement(By.xpath("//*[contains(text(),'Accept additional cookies')]")).click()
         Driver.instance.findElement(By.xpath("//*[contains(text(),'Hide cookies message')]")).click()
   }
 
-  // User should not see Business tax account menu option
   def notSeeBusinessTaxAccount(): Unit = {
     assertTrue(Driver.instance.findElements(By.xpath("//*[contains(text(),'Business tax account')]")).isEmpty)
   }
 
-  // The message collection is dropped from mongo database
   def messageCollectionDroppedFromMongoDatabase(): Unit = {
     MongoConnection.dropCollection("message", "secure-message")
   }
 
-  // A message is posted to the messages API in the (.*) environment$
   def messagePostedToTheMessagesAPI(env: String): Unit = {
     val id = Random.alphanumeric.filter(_.isDigit).take(14).mkString
         val subject = Random.alphanumeric.filter(_.isLetter).take(4).mkString
@@ -323,7 +290,6 @@ object SCAWrapperStartPageStepsSteps {
         MessagesStub.postMessagesStub(Json.parse(stubRequestBody), env)
   }
 
-  // ^the user should see (.*) as the number of messages$
   def numberOfMessages(messages: String): Unit = {
     Driver.instance.navigate().refresh()
         Driver.instance.findElement(By.partialLinkText("Messages")).click()
@@ -333,7 +299,6 @@ object SCAWrapperStartPageStepsSteps {
         actualMessagesText shouldBe messages
   }
 
-  // the user should see the message on the page after clicking the message
   def seeTheMessageOnThePage(): Unit = {
     Driver.instance.findElement(By.xpath("//*[contains(text(),'Messages')]")).click()
         Driver.instance.findElement(By.xpath("//span[@class='govuk-!-font-weight-bold black-text govuk-body']")).click()
@@ -341,7 +306,6 @@ object SCAWrapperStartPageStepsSteps {
         Driver.instance.findElement(By.id("back-link")).click()
   }
 
-  // ^the user sees services relevant content in welsh language$
   def relevantContentInWelshLanguage(): Unit = {
     val texts =
           List("Hafan y cyfrif", "Negeseuon", "Gwirio cynnydd", "Proffil a gosodiadau", "Allgofnodi", "Cyfrif treth busnes", "Cyfrif treth personol")
@@ -351,7 +315,6 @@ object SCAWrapperStartPageStepsSteps {
         SCAStartPage.textContentVerify(othertexts)
   }
 
-  // ^the user sees services relevant content of chocs in welsh language$
   def relevantContentOfChocsInWelshLanguage(): Unit = {
     val texts =
           List("Hafan y cyfrif", "Negeseuon", "Gwirio cynnydd", "Proffil a gosodiadau", "Allgofnodi", "Cyfrif treth busnes", "Cyfrif treth personol")
@@ -361,7 +324,6 @@ object SCAWrapperStartPageStepsSteps {
         SCAStartPage.textContentVerify(othertexts)
   }
 
-  // the user sees services relevant content in English language
   def relevantContentInEnglishLanguage(): Unit = {
     val texts = List("Personal tax account", "Account home", "Messages", "Check progress", "Profile and settings", "Business tax account", "Sign out")
 

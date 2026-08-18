@@ -19,9 +19,9 @@ package scalaTest.specs
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.featurespec.AnyFeatureSpec
 import scalaTest.specs.tags.WipTest
-import scalaTest.specsDefs.GGLoginStepsSteps.*
-import scalaTest.specsDefs.SCAStartPageStepsSteps.*
-import scalaTest.specsDefs.SCAWrapperStartPageStepsSteps.*
+import scalaTest.specsDefs.GGLoginSteps.*
+import scalaTest.specsDefs.SCAStartPageSteps.*
+import scalaTest.specsDefs.SCAWrapperStartPageSteps.*
 
 
 class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec {

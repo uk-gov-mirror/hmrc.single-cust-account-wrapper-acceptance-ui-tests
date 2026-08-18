@@ -24,9 +24,8 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-object ActivitiesPageStepsSteps {
+object ActivitiesPageSteps {
 
-  // ^User is on activity start page$
   def userIsOnActivityStartPage(): Unit = {
   assert(SCAStartPage.verifySCAStartPage())
   }
@@ -35,7 +34,6 @@ object ActivitiesPageStepsSteps {
     SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value)
   }
 
-  // ^User should see test text on activity page$
   def userShouldSeeTestTextOnActivityPage(): Unit = {
     val date = LocalDate.now.minusMonths(2).minusDays(1)
         val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
@@ -44,7 +42,6 @@ object ActivitiesPageStepsSteps {
         SCAStartPage.assertContent(By.xpath("(//div[@class='govuk-summary-list__row'][dd/a[contains(text(), 'Your tax calculation for the 2022-2023 is now available')]]/dt/strong[contains(text(), '" + formattedString + "')])[1]"), formattedString)
   }
 
-  // ^the user sees PAYE income date on the page$
   def userSeesPAYEIncomeDateOnPage(): Unit = {
     val date = LocalDate.now.minusMonths(2).minusDays(1)
         val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
@@ -53,7 +50,6 @@ object ActivitiesPageStepsSteps {
         SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][contains(., \"Central Perk Coffee Ltd paid you PAYE income\")]/descendant::dt/strong[contains(text(), '" + formattedString + "')]"), formattedString)
   }
 
-  // the user sees text latest tax code change date on the page
   def userSeesTextLatestTaxCodeChangeDateOnThePage(): Unit = {
     val date = LocalDate.now.minusMonths(2).minusDays(1)
         val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
@@ -61,27 +57,22 @@ object ActivitiesPageStepsSteps {
         SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
   }
   
-  // ^the user sees text (.*) on the page$
   def userSeesTextOnThePage(value: String): Unit = {
     SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + value + "')]"), value)
   }
 
-  // ^the user should sees text (.*) on the page$
   def userShouldSeesTextOnThePage(value: String): Unit = {
     SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + value + "')]"), value)
   }
 
-  // ^the user should see latest tax code text (.*) on the page$
   def userShouldSeesLatestTaxCodeTextOnThePage(value: String): Unit = {
     SCAStartPage.assertContent(By.xpath("//*[contains(a/text(), '" + value + "')]"), value)
   }
 
-  // User should not see (.*) text on activity page$
   def userShouldNotSeeTextOnActivityPage(value: String): Unit = {
     assertTrue(Driver.instance.findElements(By.xpath("//*[contains(text(),'" + value + "')]")).isEmpty)
   }
 
-  // ^the user sees text as a (.*) date on the page$
   def userSeesTextDateOnThePage(value: String): Unit = {
     value match {
 
